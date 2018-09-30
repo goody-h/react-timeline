@@ -1,0 +1,56 @@
+{
+    "name": "@orsteg/react-timeline",
+    "version": "0.1.0",
+    "description": "Display events smoothly on a timeline",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "concurrently \"npm run lib:watch\" \"npm run docs\"",
+        "lib": "babel src/lib -d dist --copy-files",
+        "lib:watch": "babel src/lib -w -d dist --copy-files",
+        "docs": "webpack-dev-server --mode development",
+        "docs:prod": "webpack --mode production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Goody-h/react-timeline.git"
+    },
+    "keywords": [
+        "react",
+        "timeline",
+        "orsteg",
+        "react-component",
+        "lightweight"
+    ],
+    "author": "Goodhope Ordu <goodhopeordu@yahoo.com> (https://orsteg.com)",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/Goody-h/react-timeline/issues"
+    },
+    "homepage": "https://github.com/Goody-h/react-timeline#readme",
+    "dependencies": {
+        "prop-types": "^15.6.2"
+    },
+    "peerDependencies": {
+        "react": "^15.3.0 || ^16.2.0",
+        "react-dom": "^15.3.0 || ^16.2.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.0.0-beta.46",
+        "@babel/core": "^7.0.0-beta.46",
+        "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+        "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
+        "@babel/preset-env": "^7.0.0-beta.46",
+        "@babel/preset-react": "^7.0.0-beta.46",
+        "babel-loader": "^8.0.0-beta.0",
+        "concurrently": "^3.5.1",
+        "css-loader": "^0.28.11",
+        "file-loader": "^2.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2",
+        "style-loader": "^0.21.0",
+        "webpack": "^4.6.0",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.3"
+    }
+}
