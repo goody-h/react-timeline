@@ -11,7 +11,7 @@ const edu = [
 
 const Item = ({ inst, year, cert }) => (
     <div >
-        <div className="">{year}</div>
+        <div>{year}</div>
         <br />
         <h4>{inst}</h4>
         <p>{cert}</p>
@@ -21,11 +21,12 @@ const Item = ({ inst, year, cert }) => (
 function Demo() {
     return (
         <div>
-            <h1>Demo with examples of the component</h1>
+            <h1>Demo with examples of the Timeline</h1>
             <Timeline
                 objects={edu}
                 component={Item}
-                itemClass=""
+                itemClass="class"
+                itemAttributes={{"attr-1":"one", "attr-2":"two"}}
             /> 
         </div>
     );

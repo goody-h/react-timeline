@@ -8,6 +8,7 @@ class Timeline extends Component {
 
     static propTypes = {
         itemClass: PropTypes.string,
+        itemAttributes: PropTypes.object,
         children: PropTypes.any,
         objects: PropTypes.array,
         component: PropTypes.any,
@@ -23,7 +24,7 @@ class Timeline extends Component {
         if(this.props.children){
             this.children = {objs:[...this.props.children], hasChildren: true};
         } else if (this.props.objects && this.props.component) {
-            this.children = {objs:[...this.props.objects], hasChildren: false, comp: this.props.component};
+            this.children = {objs:[...this.props.objects], hasChildren: false};
         } else {
             this.children = {objs:[]};
         }
@@ -53,11 +54,11 @@ class Timeline extends Component {
                             {
                                 this.children.objs.map((e, k) => {
                                     if (k % 2 === 0 && k < this.children.objs.length / 2) {
-                                        return (<TlItem pos={0} key={k} { ...this.props } dis="tl-show-on-all" content={e} Comp={this.children.comp} />);
+                                        return (<TlItem pos={0} key={k} { ...this.props } dis="tl-show-on-all" content={e} />);
                                     } else if (k % 2 === 0) {
-                                        return (<TlItem pos={0} key={k} { ...this.props } dis="tl-show-on-large" content={e} Comp={this.children.comp} />);
+                                        return (<TlItem pos={0} key={k} { ...this.props } dis="tl-show-on-large" content={e} />);
                                     } else if (k < this.children.objs.length / 2) {
-                                        return (<TlItem pos={0} key={k} { ...this.props } dis="tl-show-on-small" content={e} Comp={this.children.comp} />);
+                                        return (<TlItem pos={0} key={k} { ...this.props } dis="tl-show-on-small" content={e} />);
                                     } else {
                                         return null;
                                     }
@@ -69,11 +70,11 @@ class Timeline extends Component {
                             {
                                 this.children.objs.map((e, k) => {
                                     if (k % 2 === 1 && k >= this.children.objs.length / 2) {
-                                        return (<TlItem pos={1} key={k} { ...this.props } dis="tl-show-on-all" content={e} Comp={this.children.comp} />);
+                                        return (<TlItem pos={1} key={k} { ...this.props } dis="tl-show-on-all" content={e} />);
                                     } else if (k % 2 === 1) {
-                                        return (<TlItem pos={1} key={k} { ...this.props } dis="tl-show-on-large" content={e} Comp={this.children.comp} />);
+                                        return (<TlItem pos={1} key={k} { ...this.props } dis="tl-show-on-large" content={e} />);
                                     } else if (k >= this.children.objs.length / 2) {
-                                        return (<TlItem pos={1} key={k} { ...this.props } dis="tl-show-on-small" content={e} Comp={this.children.comp} />);
+                                        return (<TlItem pos={1} key={k} { ...this.props } dis="tl-show-on-small" content={e} />);
                                     } else {
                                         return null;
                                     }
@@ -87,21 +88,24 @@ class Timeline extends Component {
     }
 }
 
-const TlItem = ({ pointColor, itemClass, dis, pos, Comp, content }) => (
-    <div className={`tl-wrapper ${dis} ${itemClass || ""}`}>
-        <div className="tl-item">
-            <div className="tl-point" style={{backgroundColor: pointColor}}></div>
-            <div className="tl">
-                <div className="tl-pointer">
-                    <img className="tl-arrow-r" src={arrowR} alt="" />
-                    {pos === 1 ? <img className="tl-arrow-l" src={arrowL} alt="" /> : null}
-                </div>
-                <div className="tl-content">
-                    {Comp? <Comp {...content}/> : content}
+const TlItem = (props) => {
+    const Comp = props.component;
+    return (
+        <div className={`tl-wrapper ${props.dis} ${props.itemClass || ""}`} {...props.itemAttributes}>
+            <div className="tl-item">
+                <div className="tl-point" style={{ backgroundColor: props.pointColor }}></div>
+                <div className="tl">
+                    <div className="tl-pointer">
+                        <img className="tl-arrow-r" src={arrowR} alt="" />
+                        {props.pos === 1 ? <img className="tl-arrow-l" src={arrowL} alt="" /> : null}
+                    </div>
+                    <div className="tl-content">
+                        {Comp ? <Comp {...props.content} /> : props.content}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default Timeline;

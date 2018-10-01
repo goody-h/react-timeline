@@ -70,8 +70,7 @@ function (_Component) {
     } else if (_this.props.objects && _this.props.component) {
       _this.children = {
         objs: _toConsumableArray(_this.props.objects),
-        hasChildren: false,
-        comp: _this.props.component
+        hasChildren: false
       };
     } else {
       _this.children = {
@@ -127,8 +126,7 @@ function (_Component) {
             key: k
           }, _this2.props, {
             dis: "tl-show-on-all",
-            content: e,
-            Comp: _this2.children.comp
+            content: e
           }));
         } else if (k % 2 === 0) {
           return _react.default.createElement(TlItem, _extends({
@@ -136,8 +134,7 @@ function (_Component) {
             key: k
           }, _this2.props, {
             dis: "tl-show-on-large",
-            content: e,
-            Comp: _this2.children.comp
+            content: e
           }));
         } else if (k < _this2.children.objs.length / 2) {
           return _react.default.createElement(TlItem, _extends({
@@ -145,8 +142,7 @@ function (_Component) {
             key: k
           }, _this2.props, {
             dis: "tl-show-on-small",
-            content: e,
-            Comp: _this2.children.comp
+            content: e
           }));
         } else {
           return null;
@@ -162,8 +158,7 @@ function (_Component) {
             key: k
           }, _this2.props, {
             dis: "tl-show-on-all",
-            content: e,
-            Comp: _this2.children.comp
+            content: e
           }));
         } else if (k % 2 === 1) {
           return _react.default.createElement(TlItem, _extends({
@@ -171,8 +166,7 @@ function (_Component) {
             key: k
           }, _this2.props, {
             dis: "tl-show-on-large",
-            content: e,
-            Comp: _this2.children.comp
+            content: e
           }));
         } else if (k >= _this2.children.objs.length / 2) {
           return _react.default.createElement(TlItem, _extends({
@@ -180,8 +174,7 @@ function (_Component) {
             key: k
           }, _this2.props, {
             dis: "tl-show-on-small",
-            content: e,
-            Comp: _this2.children.comp
+            content: e
           }));
         } else {
           return null;
@@ -195,6 +188,7 @@ function (_Component) {
 
 _defineProperty(Timeline, "propTypes", {
   itemClass: _propTypes.default.string,
+  itemAttributes: _propTypes.default.object,
   children: _propTypes.default.any,
   objects: _propTypes.default.array,
   component: _propTypes.default.any,
@@ -204,21 +198,16 @@ _defineProperty(Timeline, "propTypes", {
 
 _defineProperty(Timeline, "defaultProps", {});
 
-var TlItem = function TlItem(_ref) {
-  var pointColor = _ref.pointColor,
-      itemClass = _ref.itemClass,
-      dis = _ref.dis,
-      pos = _ref.pos,
-      Comp = _ref.Comp,
-      content = _ref.content;
-  return _react.default.createElement("div", {
-    className: "tl-wrapper ".concat(dis, " ").concat(itemClass || "")
-  }, _react.default.createElement("div", {
+var TlItem = function TlItem(props) {
+  var Comp = props.component;
+  return _react.default.createElement("div", _extends({
+    className: "tl-wrapper ".concat(props.dis, " ").concat(props.itemClass || "")
+  }, props.itemAttributes), _react.default.createElement("div", {
     className: "tl-item"
   }, _react.default.createElement("div", {
     className: "tl-point",
     style: {
-      backgroundColor: pointColor
+      backgroundColor: props.pointColor
     }
   }), _react.default.createElement("div", {
     className: "tl"
@@ -228,13 +217,13 @@ var TlItem = function TlItem(_ref) {
     className: "tl-arrow-r",
     src: _arrow.default,
     alt: ""
-  }), pos === 1 ? _react.default.createElement("img", {
+  }), props.pos === 1 ? _react.default.createElement("img", {
     className: "tl-arrow-l",
     src: _arrowL.default,
     alt: ""
   }) : null), _react.default.createElement("div", {
     className: "tl-content"
-  }, Comp ? _react.default.createElement(Comp, content) : content))));
+  }, Comp ? _react.default.createElement(Comp, props.content) : props.content))));
 };
 
 var _default = Timeline;
