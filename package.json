@@ -1,6 +1,6 @@
 {
     "name": "@orsteg/react-timeline",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Display events smoothly on a timeline",
     "main": "dist/index.js",
     "scripts": {
