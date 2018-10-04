@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import arrowR from './arrow.png';
-import arrowL from './arrow-l.png';
 import './timeline.css';
 
 class Timeline extends Component {
 
     static propTypes = {
-        itemClass: PropTypes.string,
-        itemAttributes: PropTypes.object,
         children: PropTypes.any,
         objects: PropTypes.array,
         component: PropTypes.any,
+        itemClass: PropTypes.string,
+        itemAttributes: PropTypes.object,
+        backgroundColor: PropTypes.string,
+        itemBackgroundColor: PropTypes.string,
+        pointerColor: PropTypes.string,
         dividerColor: PropTypes.string,
-        pointColor: PropTypes.string
+        pointColor: PropTypes.string,
+        noBorder: PropTypes.bool
     };
 
-    static defaultProps = { };
+    static defaultProps = {
+        itemClass: "",
+        itemAttributes: {},
+        backgroundColor: "white",
+        noBorder: false
+    };
 
     constructor(props) {
         super(props);
@@ -90,16 +97,18 @@ class Timeline extends Component {
 
 const TlItem = (props) => {
     const Comp = props.component;
+    const pointer = {border: props.noBorder? "none" : null, backgroundColor: props.pointerColor || props.backgroundColor || props.itemBackgroundColor};
+
     return (
-        <div className={`tl-wrapper ${props.dis} ${props.itemClass || ""}`} {...props.itemAttributes}>
+        <div className={`tl-wrapper ${props.dis} ${props.itemClass}`} {...props.itemAttributes}>
             <div className="tl-item">
-                <div className="tl-point" style={{ backgroundColor: props.pointColor }}></div>
-                <div className="tl">
+                <div className="tl-point" style={{ backgroundColor: props.pointColor }} />
+                <div className="tl"  style={{border: props.noBorder? "none" : null}}>
                     <div className="tl-pointer">
-                        <img className="tl-arrow-r" src={arrowR} alt="" />
-                        {props.pos === 1 ? <img className="tl-arrow-l" src={arrowL} alt="" /> : null}
+                        <div className="tl-arrow-r" style={pointer}/>
+                        {props.pos === 1 ? <div className="tl-arrow-l" style={pointer} /> : null}
                     </div>
-                    <div className="tl-content">
+                    <div className="tl-content" style={{backgroundColor: props.itemBackgroundColor || props.backgroundColor || props.pointerColor}}>
                         {Comp ? <Comp {...props.content} /> : props.content}
                     </div>
                 </div>

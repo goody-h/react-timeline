@@ -9,10 +9,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _arrow = _interopRequireDefault(require("./arrow.png"));
-
-var _arrowL = _interopRequireDefault(require("./arrow-l.png"));
-
 require("./timeline.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -187,21 +183,34 @@ function (_Component) {
 }(_react.Component);
 
 _defineProperty(Timeline, "propTypes", {
-  itemClass: _propTypes.default.string,
-  itemAttributes: _propTypes.default.object,
   children: _propTypes.default.any,
   objects: _propTypes.default.array,
   component: _propTypes.default.any,
+  itemClass: _propTypes.default.string,
+  itemAttributes: _propTypes.default.object,
+  backgroundColor: _propTypes.default.string,
+  itemBackgroundColor: _propTypes.default.string,
+  pointerColor: _propTypes.default.string,
   dividerColor: _propTypes.default.string,
-  pointColor: _propTypes.default.string
+  pointColor: _propTypes.default.string,
+  noBorder: _propTypes.default.bool
 });
 
-_defineProperty(Timeline, "defaultProps", {});
+_defineProperty(Timeline, "defaultProps", {
+  itemClass: "",
+  itemAttributes: {},
+  backgroundColor: "white",
+  noBorder: false
+});
 
 var TlItem = function TlItem(props) {
   var Comp = props.component;
+  var pointer = {
+    border: props.noBorder ? "none" : null,
+    backgroundColor: props.pointerColor || props.backgroundColor || props.itemBackgroundColor
+  };
   return _react.default.createElement("div", _extends({
-    className: "tl-wrapper ".concat(props.dis, " ").concat(props.itemClass || "")
+    className: "tl-wrapper ".concat(props.dis, " ").concat(props.itemClass)
   }, props.itemAttributes), _react.default.createElement("div", {
     className: "tl-item"
   }, _react.default.createElement("div", {
@@ -210,19 +219,23 @@ var TlItem = function TlItem(props) {
       backgroundColor: props.pointColor
     }
   }), _react.default.createElement("div", {
-    className: "tl"
+    className: "tl",
+    style: {
+      border: props.noBorder ? "none" : null
+    }
   }, _react.default.createElement("div", {
     className: "tl-pointer"
-  }, _react.default.createElement("img", {
+  }, _react.default.createElement("div", {
     className: "tl-arrow-r",
-    src: _arrow.default,
-    alt: ""
-  }), props.pos === 1 ? _react.default.createElement("img", {
+    style: pointer
+  }), props.pos === 1 ? _react.default.createElement("div", {
     className: "tl-arrow-l",
-    src: _arrowL.default,
-    alt: ""
+    style: pointer
   }) : null), _react.default.createElement("div", {
-    className: "tl-content"
+    className: "tl-content",
+    style: {
+      backgroundColor: props.itemBackgroundColor || props.backgroundColor || props.pointerColor
+    }
   }, Comp ? _react.default.createElement(Comp, props.content) : props.content))));
 };
 

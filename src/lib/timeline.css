@@ -108,7 +108,6 @@
     position: relative;
     border: 1px solid #e2e3e4;
     border-radius: 20px;
-    background-color: white
 }
 
 .tl-col-1 .tl,
@@ -125,6 +124,9 @@
 
 .tl-content {
     padding: 30px;
+    position: relative;
+    background-color: white;
+    border-radius: 19px;
 }
 
 .tl-padding {
@@ -159,29 +161,44 @@
 
 /* timeline pointer */
 
-.tl-pointer img {
+.tl-pointer {
     position: absolute;
     top: 50px;
     left: 100%;
-    transform: translate(-5px, -50%);
+    transform: translateY(-50%);
+}
+
+.tl-arrow-r {
+    height: 32px;
+    width: 32px;
+    border-bottom: 1px solid #e2e3e4;
+    border-right: 1px solid #e2e3e4;
+    background-color: white;
+    transform: translate(0.7px, 6px) rotate(-45deg);
+    transform-origin: left bottom
+}
+
+.tl-arrow-l {
+    height: 32px;
+    width: 32px;
+    border-bottom: 1px solid #e2e3e4;
+    border-left: 1px solid #e2e3e4;
+    background-color: white;
+    transform: translate(-0.7px, 6.834523779px) rotate(45deg);
+    transform-origin: right bottom
 }
 
 .tl-col-2 .tl-arrow-l {
     display: none
 }
 
-.tl-col-2 .tl-arrow-r {
-    display: inline;
-}
-
 @media (min-width: 550px) {
-    .tl-col-2 .tl-pointer .tl-arrow-l {
+    .tl-col-2 .tl-pointer {
         left: initial;
         right: 100%;
-        transform: translate(5px, -50%);
     }
     .tl-col-2 .tl-arrow-l {
-        display: inline
+        display: inline-block
     }
     .tl-col-2 .tl-arrow-r {
         display: none;
