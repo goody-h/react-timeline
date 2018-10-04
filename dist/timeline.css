@@ -168,6 +168,9 @@
     transform: translateY(-50%);
 }
 
+
+/* pointer Y translation formular, Y = l(sin(45) - 0.5) */
+
 .tl-arrow-r {
     height: 32px;
     width: 32px;
@@ -184,7 +187,7 @@
     border-bottom: 1px solid #e2e3e4;
     border-left: 1px solid #e2e3e4;
     background-color: white;
-    transform: translate(-0.7px, 6.834523779px) rotate(45deg);
+    transform: translate(-0.7px, 6px) rotate(45deg);
     transform-origin: right bottom
 }
 
